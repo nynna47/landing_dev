@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevCriativo - Desenvolvimento Web & Design Digital</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Custom CSS */
+        :root {
+            --primary: #4F46E5;  /* Indigo-600 */
+            --secondary: #10B981; /* Emerald-500 */
+            --accent: #F59E0B;   /* Amber-500 */
+            --dark: #1F2937;     /* Gray-800 */
+            --light: #F9FAFB;    /* Gray-50 */
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Gradient background for hero section */
+        .hero-gradient {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        }
+        
+        /* Card hover effect */
+        .portfolio-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        /* Testimonial card styling */
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Form input focus style */
+        .form-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+        }
+        
+        /* Carousel animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        
+        /* Mobile menu animation */
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .mobile-menu {
+            animation: slideDown 0.3s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50 text-gray-800">
+    <!-- Navigation Bar -->
+    <header class="fixed w-full bg-white shadow-md z-50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <div class="w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-center text-white font-bold text-xl">DC</div>
+                    <span class="ml-3 text-xl font-bold text-indigo-600">DevCriativo</span>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-indigo-600 font-medium hover:text-indigo-800 transition">Início</a>
+                    <a href="#portfolio" class="text-gray-600 hover:text-indigo-600 transition">Portfólio</a>
+                    <a href="#services" class="text-gray-600 hover:text-indigo-600 transition">Serviços</a>
+                    <a href="#testimonials" class="text-gray-600 hover:text-indigo-600 transition">Depoimentos</a>
+                    <a href="#contact" class="text-gray-600 hover:text-indigo-600 transition">Contato</a>
+                </nav>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-button" class="md:hidden text-gray-600 focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+            
+            <!-- Mobile Navigation (hidden by default) -->
+            <div id="mobile-menu" class="hidden md:hidden mobile-menu mt-4 pt-4 border-t border-gray-200">
+                <div class="flex flex-col space-y-3">
+                    <a href="#home" class="text-indigo-600 font-medium hover:text-indigo-800 transition">Início</a>
+                    <a href="#portfolio" class="text-gray-600 hover:text-indigo-600 transition">Portfólio</a>
+                    <a href="#services" class="text-gray-600 hover:text-indigo-600 transition">Serviços</a>
+                    <a href="#testimonials" class="text-gray-600 hover:text-indigo-600 transition">Depoimentos</a>
+                    <a href="#contact" class="text-gray-600 hover:text-indigo-600 transition">Contato</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-gradient pt-32 pb-20 text-white">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center">
+                <!-- Hero Text -->
+                <div class="md:w-1/2 mb-12 md:mb-0 fade-in">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-6">Sua Presença Digital com Excelência</h1>
+                    <p class="text-xl mb-8 opacity-90">Transformo ideias em experiências digitais memoráveis. Sites que não apenas impressionam, mas também convertem visitantes em clientes.</p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="#contact" class="bg-white text-indigo-600 px-8 py-3 rounded-lg font-bold text-center hover:bg-gray-100 transition shadow-lg">Fale Conosco</a>
+                        <a href="#portfolio" class="bg-transparent border-2 border-white px-8 py-3 rounded-lg font-bold text-center hover:bg-white hover:text-indigo-600 transition">Ver Portfólio</a>
+                    </div>
+                </div>
+                
+                <!-- Hero Image -->
+                <div class="md:w-1/2 flex justify-center fade-in" style="animation-delay: 0.3s;">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" 
+                         alt="Desenvolvimento Web" 
+                         class="rounded-xl shadow-2xl w-full max-w-md border-4 border-white">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="bg-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div class="p-4">
+                    <div class="text-4xl font-bold text-indigo-600 mb-2">150+</div>
+                    <div class="text-gray-600">Projetos Concluídos</div>
+                </div>
+                <div class="p-4">
+                    <div class="text-4xl font-bold text-emerald-500 mb-2">95%</div>
+                    <div class="text-gray-600">Satisfação do Cliente</div>
+                </div>
+                <div class="p-4">
+                    <div class="text-4xl font-bold text-amber-500 mb-2">10+</div>
+                    <div class="text-gray-600">Anos de Experiência</div>
+                </div>
+                <div class="p-4">
+                    <div class="text-4xl font-bold text-indigo-600 mb-2">50+</div>
+                    <div class="text-gray-600">Clientes Atendidos</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Nosso Portfólio</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Explore alguns dos nossos projetos recentes em diversos nichos de mercado.</p>
+            </div>
+            
+            <!-- Portfolio Categories -->
+            <div class="flex flex-wrap justify-center mb-12 gap-4">
+                <button class="category-btn px-6 py-2 rounded-full bg-indigo-600 text-white font-medium">Todos</button>
+                <button class="category-btn px-6 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-indigo-600 hover:text-white transition">Landing Pages</button>
+                <button class="category-btn px-6 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-indigo-600 hover:text-white transition">E-commerce</button>
+                <button class="category-btn px-6 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-indigo-600 hover:text-white transition">Blogs</button>
+                <button class="category-btn px-6 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-indigo-600 hover:text-white transition">Sistemas</button>
+            </div>
+            
+            <!-- Portfolio Carousel -->
+            <div class="relative overflow-hidden rounded-xl shadow-lg bg-white">
+                <div id="portfolio-carousel" class="relative h-96 md:h-[32rem] w-full">
+                    <!-- Portfolio Items -->
+                    <div class="portfolio-item absolute inset-0 flex items-center justify-center opacity-0 transition-all duration-500">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" 
+                             alt="E-commerce de Moda" 
+                             class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-end p-8">
+                            <div class="text-white">
+                                <h3 class="text-2xl font-bold mb-2">Moda Elegante</h3>
+                                <p class="mb-4">E-commerce completo para loja de moda feminina</p>
+                                <a href="https://exemplo-ecommerce.com" target="_blank" class="inline-block bg-white text-indigo-600 px-6 py-2 rounded-lg font-medium hover:bg-gray-100 transition">Visitar Site</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="portfolio-item absolute inset-0 flex items-center justify-center opacity-0 transition-all duration-500">
+                        <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80" 
+                             alt="Landing Page de Serviços" 
+                             class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-end p-8">
+                            <div class="text-white">
+                                <h3 class="text-2xl font-bold mb-2">Consultoria Digital</h3>
+                                <p class="mb-4">Landing page de alta conversão para empresa de consultoria</p>
+                                <a href="https://exemplo-consultoria.com" target="_blank" class="inline-block bg-white text-indigo-600 px-6 py-2 rounded-lg font-medium hover:bg-gray-100 transition">Visitar Site</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="portfolio-item absolute inset-0 flex items-center justify-center opacity-0 transition-all duration-500">
+                        <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1064&q=80" 
+                             alt="Blog de Viagens" 
+                             class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-end p-8">
+                            <div class="text-white">
+                                <h3 class="text-2xl font-bold mb-2">Mundo Viajante</h3>
+                                <p class="mb-4">Blog de viagens com design responsivo e integração com redes sociais</p>
+                                <a href="https://exemplo-blogviagens.com" target="_blank" class="inline-block bg-white text-indigo-600 px-6 py-2 rounded-lg font-medium hover:bg-gray-100 transition">Visitar Site</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Carousel Navigation -->
+                <button id="portfolio-prev" class="absolute left-4 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 text-white p-3 rounded-full hover:bg-opacity-70 transition-all z-10">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button id="portfolio-next" class="absolute right-4 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 text-white p-3 rounded-full hover:bg-opacity-70 transition-all z-10">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                
+                <!-- Indicators -->
+                <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2 z-10">
+                    <button class="portfolio-indicator w-3 h-3 rounded-full bg-white bg-opacity-50 hover:bg-opacity-100" data-index="0"></button>
+                    <button class="portfolio-indicator w-3 h-3 rounded-full bg-white bg-opacity-50 hover:bg-opacity-100" data-index="1"></button>
+                    <button class="portfolio-indicator w-3 h-3 rounded-full bg-white bg-opacity-50 hover:bg-opacity-100" data-index="2"></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Nossos Serviços</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Soluções completas para sua presença digital</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-gray-50 p-8 rounded-xl hover:shadow-lg transition">
+                    <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center text-indigo-600 mb-6">
+                        <i class="fas fa-laptop-code text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Desenvolvimento Web</h3>
+                    <p class="text-gray-600 mb-4">Sites personalizados, responsivos e otimizados para todos os dispositivos e motores de busca.</p>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-emerald-500 mr-2"></i> Landing Pages</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-emerald-500 mr-2"></i> Institucionais</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-emerald-500 mr-2"></i> Blogs</li>
+                    </ul>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="bg-gray-50 p-8 rounded-xl hover:shadow-lg transition">
+                    <div class="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center text-amber-600 mb-6">
+                        <i class="fas fa-shopping-cart text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">E-commerce</h3>
+                    <p class="text-gray-600 mb-4">Lojas virtuais completas com integração de pagamentos, frete e gestão de produtos.</p>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-emerald-500 mr-2"></i> Plataformas populares</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-emerald-500 mr-2"></i> Soluções personalizadas</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-emerald-500 mr-2"></i> Integração com marketplaces</li>
+                    </ul>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="bg-gray-50 p-8 rounded-xl hover:shadow-lg transition">
+                    <div class="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600 mb-6">
+                        <i class="fas fa-paint-brush text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Design Digital</h3>
+                    <p class="text-gray-600 mb-4">Criação de identidade visual, logotipos e materiais gráficos para sua marca.</p>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-emerald-500 mr-2"></i> UI/UX Design</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-emerald-500 mr-2"></i> Branding</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-emerald-500 mr-2"></i> Social Media</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-20 bg-indigo-600 text-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">O Que Nossos Clientes Dizem</h2>
+                <p class="text-xl opacity-90 max-w-2xl mx-auto">Depoimentos reais de empreendedores que confiaram em nosso trabalho</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card p-8 rounded-xl">
+                    <div class="flex items-center mb-6">
+                        <img src="https://randomuser.me/api/portraits/women/43.jpg" alt="Cliente Satisfeito" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold">Ana Carolina</h4>
+                            <p class="text-sm opacity-80">CEO - Moda Elegante</p>
+                        </div>
+                    </div>
+                    <p class="mb-6">"O trabalho do DevCriativo transformou completamente nosso e-commerce. As vendas aumentaram em 150% após o novo site e a experiência do usuário ficou incrível."</p>
+                    <div class="flex text-amber-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card p-8 rounded-xl">
+                    <div class="flex items-center mb-6">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Cliente Satisfeito" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold">Ricardo Almeida</h4>
+                            <p class="text-sm opacity-80">Diretor - Consultoria Digital</p>
+                        </div>
+                    </div>
+                    <p class="mb-6">"Precisávamos de uma landing page que convertesse e o DevCriativo entregou além do esperado. O atendimento foi impecável e o resultado superou nossas expectativas."</p>
+                    <div class="flex text-amber-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card p-8 rounded-xl">
+                    <div class="flex items-center mb-6">
+                        <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Cliente Satisfeito" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold">Juliana Santos</h4>
+                            <p class="text-sm opacity-80">Fundadora - Mundo Viajante</p>
+                        </div>
+                    </div>
+                    <p class="mb-6">"Meu blog nunca teve um design tão bonito e funcional. O DevCriativo entendeu exatamente o que eu precisava e criou uma experiência incrível para meus leitores."</p>
+                    <div class="flex text-amber-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Getting Started Section -->
+    <section class="py-20 bg-gradient-to-r from-indigo-500 to-emerald-500 text-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Pronto para Começar no Mundo Digital?</h2>
+            <p class="text-xl mb-8 max-w-3xl mx-auto">Se você está começando agora e não sabe por onde começar, nós te ajudamos em cada etapa do processo.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                <div class="bg-white bg-opacity-10 p-6 rounded-xl backdrop-blur-sm">
+                    <div class="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-lightbulb text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Ideia</h3>
+                    <p>Nós ajudamos a transformar sua ideia em um projeto digital viável e alinhado com seu público.</p>
+                </div>
+                
+                <div class="bg-white bg-opacity-10 p-6 rounded-xl backdrop-blur-sm">
+                    <div class="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-pencil-ruler text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Design</h3>
+                    <p>Criamos interfaces bonitas e funcionais que encantam seus clientes e facilitam a navegação.</p>
+                </div>
+                
+                <div class="bg-white bg-opacity-10 p-6 rounded-xl backdrop-blur-sm">
+                    <div class="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-rocket text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Lançamento</h3>
+                    <p>Implementamos e lançamos seu projeto com todo suporte necessário para o sucesso.</p>
+                </div>
+            </div>
+            
+            <a href="#contact" class="inline-block bg-white text-indigo-600 px-8 py-4 rounded-lg font-bold hover:bg-gray-100 transition shadow-lg text-lg">
+                Quero Começar Agora <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Fale Conosco</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Entre em contato para discutirmos seu projeto ou tirar suas dúvidas.</p>
+            </div>
+            
+            <div class="flex flex-col md:flex-row gap-12">
+                <!-- Contact Form -->
+                <div class="md:w-1/2">
+                    <form id="contact-form" class="bg-white p-8 rounded-xl shadow-md">
+                        <div class="mb-6">
+                            <label for="name" class="block text-gray-700 font-medium mb-2">Seu Nome</label>
+                            <input type="text" id="name" name="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input focus:outline-none" required>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="email" class="block text-gray-700 font-medium mb-2">Seu Email</label>
+                            <input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input focus:outline-none" required>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="phone" class="block text-gray-700 font-medium mb-2">Seu Telefone (opcional)</label>
+                            <input type="tel" id="phone" name="phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input focus:outline-none">
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="message" class="block text-gray-700 font-medium mb-2">Sua Mensagem</label>
+                            <textarea id="message" name="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg form-input focus:outline-none" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-indigo-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-indigo-700 transition">
+                            Enviar Mensagem <i class="fas fa-paper-plane ml-2"></i>
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Contact Info -->
+                <div class="md:w-1/2">
+                    <div class="bg-white p-8 rounded-xl shadow-md h-full">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6">Informações de Contato</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="bg-indigo-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-map-marker-alt text-indigo-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Endereço</h4>
+                                    <p class="text-gray-600">Rua Exemplo, 123 - Centro<br>São Paulo/SP</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-emerald-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-envelope text-emerald-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Email</h4>
+                                    <p class="text-gray-600">contato@devcriativo.com.br</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-amber-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-phone-alt text-amber-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Telefone</h4>
+                                    <p class="text-gray-600">(11) 98765-4321</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-10">
+                            <h4 class="font-bold text-gray-800 mb-4">Redes Sociais</h4>
+                            <div class="flex space-x-4">
+                                <a href="https://wa.me/5511987654321" target="_blank" class="bg-green-500 text-white p-3 rounded-full hover:bg-green-600 transition">
+                                    <i class="fab fa-whatsapp"></i>
+                                </a>
+                                <a href="https://facebook.com/devcriativo" target="_blank" class="bg-blue-600 text-white p-3 rounded-full hover:bg-blue-700 transition">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="https://instagram.com/devcriativo" target="_blank" class="bg-pink-600 text-white p-3 rounded-full hover:bg-pink-700 transition">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="https://linkedin.com/company/devcriativo" target="_blank" class="bg-blue-500 text-white p-3 rounded-full hover:bg-blue-600 transition">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between">
+                <div class="mb-8 md:mb-0">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-center text-white font-bold text-xl">DC</div>
+                        <span class="ml-3 text-xl font-bold">DevCriativo</span>
+                    </div>
+                    <p class="text-gray-400 max-w-xs">Transformando ideias em experiências digitais memoráveis desde 2010.</p>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
+                    <div>
+                        <h4 class="font-bold text-lg mb-4">Links Rápidos</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#home" class="text-gray-400 hover:text-white transition">Início</a></li>
+                            <li><a href="#portfolio" class="text-gray-400 hover:text-white transition">Portfólio</a></li>
+                            <li><a href="#services" class="text-gray-400 hover:text-white transition">Serviços</a></li>
+                            <li><a href="#contact" class="text-gray-400 hover:text-white transition">Contato</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-bold text-lg mb-4">Serviços</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="text-gray-400 hover:text-white transition">Desenvolvimento Web</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition">E-commerce</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition">Design Digital</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition">Consultoria</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-bold text-lg mb-4">Legal</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="text-gray-400 hover:text-white transition">Termos de Uso</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition">Política de Privacidade</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition">Cookies</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 mb-4 md:mb-0">© 2023 DevCriativo. Todos os direitos reservados.</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-indigo-600 text-white p-3 rounded-full shadow-lg opacity-0 invisible transition-all hover:bg-indigo-700">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white p-8 rounded-xl max-w-md mx-4 text-center">
+            <div class="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <i class="fas fa-check text-emerald-600 text-2xl"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">Mensagem Enviada!</h3>
+            <p class="text-gray-600 mb-6">Obrigado pelo seu contato. Responderemos o mais breve possível.</p>
+            <button id="close-modal" class="bg-indigo-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-indigo-700 transition">
+                Fechar
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+        
+        // Portfolio Carousel
+        const portfolioCarousel = document.getElementById('portfolio-carousel');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+        const portfolioPrevBtn = document.getElementById('portfolio-prev');
+        const portfolioNextBtn = document.getElementById('portfolio-next');
+        const portfolioIndicators = document.querySelectorAll('.portfolio-indicator');
+        
+        let currentPortfolioIndex = 0;
+        let portfolioInterval;
+        
+        function showPortfolioItem(index) {
+            portfolioItems.forEach((item, i) => {
+                item.classList.toggle('opacity-0', i !== index);
+                item.classList.toggle('z-10', i === index);
+            });
+            
+            portfolioIndicators.forEach((indicator, i) => {
+                indicator.classList.toggle('bg-opacity-100', i === index);
+                indicator.classList.toggle('bg-opacity-50', i !== index);
+            });
+            
+            currentPortfolioIndex = index;
+        }
+        
+        function nextPortfolioItem() {
+            const nextIndex = (currentPortfolioIndex + 1) % portfolioItems.length;
+            showPortfolioItem(nextIndex);
+        }
+        
+        function prevPortfolioItem() {
+            const prevIndex = (currentPortfolioIndex - 1 + portfolioItems.length) % portfolioItems.length;
+            showPortfolioItem(prevIndex);
+        }
+        
+        function startPortfolioInterval() {
+            portfolioInterval = setInterval(nextPortfolioItem, 5000);
+        }
+        
+        function resetPortfolioInterval() {
+            clearInterval(portfolioInterval);
+            startPortfolioInterval();
+        }
+        
+        portfolioPrevBtn.addEventListener('click', () => {
+            prevPortfolioItem();
+            resetPortfolioInterval();
+        });
+        
+        portfolioNextBtn.addEventListener('click', () => {
+            nextPortfolioItem();
+            resetPortfolioInterval();
+        });
+        
+        portfolioIndicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => {
+                showPortfolioItem(index);
+                resetPortfolioInterval();
+            });
+        });
+        
+        // Pause carousel on hover
+        portfolioCarousel.addEventListener('mouseenter', () => {
+            clearInterval(portfolioInterval);
+        });
+        
+        portfolioCarousel.addEventListener('mouseleave', () => {
+            startPortfolioInterval();
+        });
+        
+        // Initialize
+        showPortfolioItem(0);
+        startPortfolioInterval();
+        
+        // Back to Top Button
+        const backToTopButton = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.remove('opacity-100', 'visible');
+                backToTopButton.classList.add('opacity-0', 'invisible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Contact Form Submission
+        const contactForm = document.getElementById('contact-form');
+        const successModal = document.getElementById('success-modal');
+        const closeModal = document.getElementById('close-modal');
+        
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Here you would typically send the form data to your server
+            // For this example, we'll just show the success modal
+            
+            // Reset form
+            contactForm.reset();
+            
+            // Show success modal
+            successModal.classList.remove('hidden');
+        });
+        
+        closeModal.addEventListener('click', () => {
+            successModal.classList.add('hidden');
+        });
+        
+        // Close modal when clicking outside
+        successModal.addEventListener('click', (e) => {
+            if (e.target === successModal) {
+                successModal.classList.add('hidden');
+            }
+        });
+        
+        // Portfolio Category Filter
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                categoryButtons.forEach(btn => {
+                    btn.classList.remove('bg-indigo-600', 'text-white');
+                    btn.classList.add('bg-gray-200', 'text-gray-700');
+                });
+                
+                // Add active class to clicked button
+                button.classList.remove('bg-gray-200', 'text-gray-700');
+                button.classList.add('bg-indigo-600', 'text-white');
+                
+                // Here you would typically filter the portfolio items
+                // For this example, we'll just log the category
+                console.log(`Filtering by: ${button.textContent}`);
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
